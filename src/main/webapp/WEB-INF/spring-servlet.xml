@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:context="http://www.springframework.org/schema/context"
+            xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:http="http://www.springframework.org/schema/c"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context.xsd
+ http://www.springframework.org/schema/mvc
+ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.hotelSys.controller"/>
+    <mvc:annotation-driven/>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+
+    <bean id="dataSource" name="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/hotel-system? useTimezone=true &amp; serverTimezone=UTC" />
+        <property name="username" value="root" />
+        <property name="password" value="root@jea" />
+    </bean>
+
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="userDaoImpl" class="com.hotelSys.impl.UserDaoImpl" />
+
+    <bean id="roomDaoImpl" class="com.hotelSys.impl.RoomDaoImpl" />
+
+    <bean id="orderDaoImpl" class="com.hotelSys.impl.OrderDaoImpl" />
+
+    <bean id="orderDao" class="com.hotelSys.impl.OrderDaoImpl" />
+
+    <bean id="complaintDao" class="com.hotelSys.impl.ComplaintDaoImpl" />
+
+    <bean id="userDaoAdmin" class="com.hotelSys.impl.UserDaoImpl" />
+
+    <bean id="orderDaoAdmin" class="com.hotelSys.impl.OrderDaoImpl" />
+
+    <bean id="roomDaoAdmin" class="com.hotelSys.impl.RoomDaoImpl" />
+
+    <bean id="complaintDaoAdmin" class="com.hotelSys.impl.ComplaintDaoImpl" />
+
+    <bean id="orderDaoEmployee" class="com.hotelSys.impl.OrderDaoImpl" />
+
+    <bean id="complaintDaoEmployee" class="com.hotelSys.impl.ComplaintDaoImpl" />
+
+
+
+
+
+
+
+
+
+</beans>
