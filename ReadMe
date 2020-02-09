@@ -1,0 +1,30 @@
+
+This a Web Application that represents a Hotel System.
+
+It was built using Spring mvc and JSP.
+
+*This app provides services for the users like :
+
+1-Booking a room.
+
+2-Placing Orders(Restaurant or Dry Cleaning).
+
+3-Sending Complaint Messeges.
+
+*This app provides services for the admin like :
+
+1-Viewing all upcoming reservations.
+
+2-Viewing recent orders
+
+3-Adding an Employee Account.
+
+4-Reply to customers complaints.
+
+*This app provides services for the employees(Restaurant or Dry Cleaning ) like :
+
+1-Handle Orders.
+
+2-Adding Items to Menus.
+
+3-Reply to customer Complaints.

@@ -14,22 +14,22 @@ import org.apache.log4j.Logger;
 public class CrossScriptingFilter implements Filter {
 
 
-    private static Logger logger = Logger.getLogger(CrossScriptingFilter.class);
-    private FilterConfig filterConfig;
+  private static Logger logger = Logger.getLogger(CrossScriptingFilter.class);
+  private FilterConfig filterConfig;
 
-    public void init(FilterConfig filterConfig) throws ServletException {
-        this.filterConfig = filterConfig;
-    }
+  public void init(FilterConfig filterConfig) throws ServletException {
+    this.filterConfig = filterConfig;
+  }
 
-    public void destroy() {
-        this.filterConfig = null;
-    }
+  public void destroy() {
+    this.filterConfig = null;
+  }
 
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-        logger.info("Filter CrossScriptingFilter  ...............");
-        chain.doFilter(new RequestWrapper((HttpServletRequest) request), response);
-        logger.info("Filter CrossScriptingFilter ...............");
-    }
+  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+      throws IOException, ServletException {
+    logger.info("Filter CrossScriptingFilter  ...............");
+    chain.doFilter(new RequestWrapper((HttpServletRequest) request), response);
+    logger.info("Filter CrossScriptingFilter ...............");
+  }
 
 }

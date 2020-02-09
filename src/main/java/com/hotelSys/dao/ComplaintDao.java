@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface ComplaintDao {
 
-    void registerComplaint(Complaint complaint);
+  void registerComplaint(Complaint complaint);
 
-    void replyToComplaint(ComplaintReply complaintReply);
+  void replyToComplaint(ComplaintReply complaintReply);
 
-    List<Complaint> viewComplaintsForUser(int id);
+  List<Complaint> viewComplaintsForUser(int id);
 
-    List<Complaint> viewComplaintsForEmployee(String type);
+  List<Complaint> viewComplaintsForEmployee(String type);
 
-    List<Complaint> viewComplaintsForAdmin();
+  List<Complaint> viewComplaintsForAdmin();
 
 }

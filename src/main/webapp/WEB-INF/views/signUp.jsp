@@ -18,7 +18,7 @@
 
     <tr> <td> First Name <input id="firstName" type="text" name="firstName"></td> </tr>
         <tr> <td>Last Name <input id="lastName" type="text" name="lastName"></td></tr>
-        <tr> <td>Date Of Birth <input id="dateOfBirth" type="text" name="dateOfBirth"></td></tr>
+        <tr> <td>Date Of Birth (yyyy-mm-dd) <input id="dateOfBirth" type="text" name="dateOfBirth"></td></tr>
         <tr> <td>Phone Number <input id="phoneNumber" type="text" name="phoneNumber"></td></tr>
         <tr> <td>Password <input id="password" type="password" name="password"></td></tr>
         <tr> <td>Re-Enter Password <input id="password1" type="password" name="password1" ></td></tr>

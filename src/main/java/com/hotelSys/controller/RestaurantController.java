@@ -21,70 +21,71 @@ import java.util.List;
 @Controller
 public class RestaurantController {
 
-    @Autowired
-    public OrderDaoImpl orderDaoImpl;
+  @Autowired
+  public OrderDaoImpl orderDaoImpl;
 
 
-    @RequestMapping(value = "/restaurantMenu", method = RequestMethod.GET)
-    public ModelAndView showMenu(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView("restaurantMenu");
-        List<Item> list = orderDaoImpl.viewMenu("restaurant");
-        mav.addObject("list", list);
-        return mav;
+  @RequestMapping(value = "/restaurantMenu", method = RequestMethod.GET)
+  public ModelAndView showMenu(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView("restaurantMenu");
+    List<Item> list = orderDaoImpl.viewMenu("restaurant");
+    mav.addObject("list", list);
+    return mav;
+  }
+
+  @RequestMapping(value = "/restaurantOrder", method = RequestMethod.GET)
+  public ModelAndView placeAnOrder(HttpServletRequest request, HttpServletResponse response) {
+
+    HttpSession session = request.getSession(false);
+    ModelAndView mav;
+
+    if (session.getAttribute("id") == null) {
+      mav = new ModelAndView("login");
+      mav.addObject("login", new Login());
+      mav.addObject("message", "You Have to be Logged in First");
+      return mav;
+    } else {
+      mav = new ModelAndView("placeOrderRestaurant");
+      List<Item> list = orderDaoImpl.viewMenu("restaurant");
+      mav.addObject("list", list);
+      mav.addObject("orderWrapper", new OrderWrapper());
+      return mav;
     }
+  }
 
-    @RequestMapping(value = "/restaurantOrder", method = RequestMethod.GET)
-    public ModelAndView placeAnOrder(HttpServletRequest request, HttpServletResponse response) {
+  @RequestMapping(value = "/restaurantOrderProcess", method = RequestMethod.POST)
+  public ModelAndView orderProcess(HttpServletRequest request, HttpServletResponse response,
+      @ModelAttribute("orderWrapper") OrderWrapper orderWrapper) {
 
-        HttpSession session = request.getSession(false);
-        ModelAndView mav = null;
+    ModelAndView mav = new ModelAndView("restaurantMenu");
+    orderDaoImpl.addOrder(orderWrapper, "restaurant");
 
-        if (session.getAttribute("id") == null) {
-            mav = new ModelAndView("login");
-            mav.addObject("login", new Login());
-            mav.addObject("message", "You Have to be Logged in First");
-            return mav;
-        } else {
-            mav = new ModelAndView("placeOrderRestaurant");
-            List<Item> list = orderDaoImpl.viewMenu("restaurant");
-            mav.addObject("list", list);
-            mav.addObject("orderWrapper", new OrderWrapper());
-            return mav;
-        }
+    mav.addObject("message", "Order Registered");
+
+    return mav;
+  }
+
+  @RequestMapping(value = "/listOfOrdersUser", method = RequestMethod.GET)
+  public ModelAndView showUserOrders(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView("listOfOrdersUser");
+    HttpSession session = request.getSession();
+    List<Order> list = orderDaoImpl.viewUserOrders((Integer) session.getAttribute("id"));
+    if (list.isEmpty()) {
+      mav.addObject("message", "There Are No Orders");
     }
+    mav.addObject("list", list);
+    return mav;
+  }
 
-    @RequestMapping(value = "/restaurantOrderProcess", method = RequestMethod.POST)
-    public ModelAndView orderProcess(HttpServletRequest request, HttpServletResponse response,
-                                     @ModelAttribute("orderWrapper") OrderWrapper orderWrapper) {
+  @RequestMapping(value = "/deleteOrder/{id}", method = RequestMethod.GET)
+  public ModelAndView deleterOrder(HttpServletRequest request, HttpServletResponse response,
+      @PathVariable int id) {
 
-        ModelAndView mav = new ModelAndView("restaurantMenu");
-        orderDaoImpl.addOrder(orderWrapper,"restaurant");
+    orderDaoImpl.deleteOrder(id);
 
-        mav.addObject("message", "Order Registered");
+    ModelAndView mav = new ModelAndView("listOfOrdersUser");
+    mav.addObject("message", "Order Is Delivered");
+    return mav;
 
-        return mav;
-    }
-    @RequestMapping(value = "/listOfOrdersUser",method = RequestMethod.GET)
-    public ModelAndView showUserOrders(HttpServletRequest request, HttpServletResponse response){
-        ModelAndView mav =new ModelAndView("listOfOrdersUser") ;
-        HttpSession session = request.getSession();
-        List<Order> list = orderDaoImpl.viewUserOrders((Integer) session.getAttribute("id"));
-        if (list.isEmpty()){
-            mav.addObject("message", "There Are No Orders");
-        }
-        mav.addObject("list",list);
-        return mav;
-    }
-
-    @RequestMapping(value = "/deleteOrder/{id}",method = RequestMethod.GET)
-    public ModelAndView deleterOrder(HttpServletRequest request, HttpServletResponse response,
-                                     @PathVariable int id){
-
-        orderDaoImpl.deleteOrder(id);
-
-        ModelAndView mav = new ModelAndView("listOfOrdersUser");
-        mav.addObject("message","Order Is Delivered");
-        return mav;
-
-    }
+  }
 }

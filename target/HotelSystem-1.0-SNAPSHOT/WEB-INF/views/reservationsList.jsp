@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: zaid
-  Date: 8/22/19
-  Time: 5:37 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 %--
 Created by IntelliJ IDEA.
 User: zaid

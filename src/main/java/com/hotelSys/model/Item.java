@@ -1,49 +1,50 @@
 package com.hotelSys.model;
 
 public class Item {
-    private int id;
-    private String description;
-    private double price;
-    private int quantity;
-    private String type;
 
-    public String getType() {
-        return type;
-    }
+  private int id;
+  private String description;
+  private double price;
+  private int quantity;
+  private String type;
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public double getPrice() {
-        return price;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+  public double getPrice() {
+    return price;
+  }
 
-    public int getQuantity() {
-        return quantity;
-    }
+  public void setPrice(double price) {
+    this.price = price;
+  }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+  public int getQuantity() {
+    return quantity;
+  }
+
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
+  }
 }

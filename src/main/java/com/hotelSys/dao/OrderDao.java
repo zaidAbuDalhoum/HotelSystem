@@ -8,21 +8,21 @@ import java.util.List;
 
 public interface OrderDao {
 
-    void addOrder(OrderWrapper orderWrapper,String type);
+  void addOrder(OrderWrapper orderWrapper, String type);
 
-    void deleteOrder(int id);
+  void deleteOrder(int id);
 
-    List<Order> viewAllOrders(String type);
+  List<Order> viewAllOrders(String type);
 
-    List<Order> viewPendingOrders(String type);
+  List<Order> viewPendingOrders(String type);
 
-    void addItem(Item item);
+  void addItem(Item item);
 
-    void deleteItem(int id);
+  void deleteItem(int id);
 
-    List<Item> viewMenu(String type);
+  List<Item> viewMenu(String type);
 
-    void deliverOrder(int id);
+  void deliverOrder(int id);
 
-    List<Order> viewUserOrders(int id);
+  List<Order> viewUserOrders(int id);
 }
